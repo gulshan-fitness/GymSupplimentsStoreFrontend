@@ -1,0 +1,27 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.custom-phone-input input {
+  background-color: #f6fffa !important;
+ 
+}
+
+
+
+
+.custom-phone-input input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #17412d !important;
+}
+
+.custom-phone-input .react-tel-input .form-control {
+  background-color: #f6fffa !important;
+}
+
+.custom-phone-input input::placeholder {
+  color: #17412d !important; /* Change this color as needed */
+}
