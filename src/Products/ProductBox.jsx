@@ -27,7 +27,7 @@ export default function ProductBox({item}) {
 
     {/* Price and Button */}
     <div className="flex justify-center sm:justify-end">
-    <button className="px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-[#FFD700] via-[#FFEA70] to-[#FFD700] text-black font-semibold text-sm sm:text-base tracking-wide rounded-full shadow-[0_0_16px_rgba(255,255,255,0.5)] hover:shadow-[0_0_25px_rgba(255,255,255,1)] hover:scale-105 transition-all duration-300 ease-in-out">
+    <button className="px-5 py-2.5 sm:px-6 sm:py-3 bg-[#FFD700] text-black font-semibold text-sm sm:text-base tracking-wide rounded-full shadow-[0_0_16px_rgba(255,255,255,0.5)] hover:shadow-[0_0_25px_rgba(255,255,255,1)] hover:scale-105 transition-all duration-300 ease-in-out">
   View
 </button>
 
