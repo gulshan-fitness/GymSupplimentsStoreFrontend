@@ -25,3 +25,6 @@
 .custom-phone-input input::placeholder {
   color: #17412d !important; /* Change this color as needed */
 }
+.glow {
+  box-shadow: 0 0 12px 4px #ffffff; /* yellow glow */
+}

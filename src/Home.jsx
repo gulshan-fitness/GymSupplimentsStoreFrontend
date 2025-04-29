@@ -1,13 +1,15 @@
-import React, {  useEffect, useRef, useState } from "react";
+import React, {  useContext, useEffect, useRef, useState } from "react";
 import NightSky from "./NightSky/NightSky";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Slider from "./Slider/Slider";
+import { Context } from "./Context_holder";
 
 
 
 export default function Home(){
-  const products = [1, 2, 3, 4, 5, 6]; // you can replace this with real products
+
+  const {Products}=useContext(Context)
  
   return (
     <div className="relative min-h-screen font-sans overflow-hidden">
@@ -39,14 +41,14 @@ export default function Home(){
 
         {/* Featured Products */}
         <section className="py-4">
-          <h2 className="text-4xl font-bold mb-7 text-center tracking-tight text-white">
+          <h2 className="text-4xl font-bold  text-center tracking-tight text-white">
             Best Sellers
           </h2>
 
 
 
 
-    <Slider products={products}/>
+    <Slider products={Products}/>
 
         </section>
 
