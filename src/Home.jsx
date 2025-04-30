@@ -4,12 +4,14 @@ import NightSky from "./NightSky/NightSky";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Slider from "./Slider/Slider";
 import { Context } from "./Context_holder";
+import { IoIosGlobe } from "react-icons/io";
+import CountriesPopUp from "./CountriesPopUp/CountriesPopUp";
 
 
 
 export default function Home(){
 
-  const {Products}=useContext(Context)
+  const {Products,UserCountry,setCountrySelectPopUp}=useContext(Context)
  
   return (
     <div className="relative min-h-screen font-sans overflow-hidden">
@@ -19,11 +21,22 @@ export default function Home(){
       {/* Main Content */}
       <div className="relative z-10 text-white px-8 ">
  {/* Navbar */}
- <header className="w-full fixed top-0 left-0 flex justify-center shadow-b shadow-md shadow-white items-center h-16 bg-black/50 backdrop-blur-md z-20">
-          <h1 className="text-2xl font-extrabold tracking-wider text-yellow-400">
-            GYM LEGION
-          </h1>
-        </header>
+ <header className="w-full fixed top-0 left-0 h-16 bg-black/50 backdrop-blur-md shadow-md shadow-white z-20 flex items-center  px-4 sm:px-6">
+  {/* Centered Title */}
+  <h1 className="absolute left-1/2 transform -translate-x-1/2 text-lg sm:text-2xl font-extrabold tracking-wider text-yellow-400 whitespace-nowrap">
+    GYM LEGION
+  </h1>
+
+  {/* Right-aligned Country Code */}
+  <button className="ml-auto flex items-center text-xs sm:text-sm font-medium gap-1"
+  onClick={()=>setCountrySelectPopUp(true)}
+  >
+    <IoIosGlobe className="text-base sm:text-xl text-white" />
+    <span className="text-yellow-300">{UserCountry}</span>
+  </button>
+</header>
+
+     
 
        {/* Hero Section */}
 <section className="flex flex-col items-center text-center mt-28 mb-12 px-4">
@@ -81,6 +94,8 @@ export default function Home(){
         </footer>
         
       </div>
+
+      <CountriesPopUp/>
     </div>
   );
 };

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../Context_holder'
 
-export default function ProductBox({item}) {
+export default function ProductBox({item}){
+  
+  const{UserCountry}=useContext(Context)
+
   return (
 <a
-  href={item?.link}
+  href={item?.[UserCountry]}
   target="_blank"
   rel="noopener noreferrer"
   className="w-full md:w-1/3 p-2"

@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ProductBox from '../Products/ProductBox';
+import { Context } from '../Context_holder';
 
 export default function Slider({ products }) {
+  const{UserCountry}=useContext(Context)
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleProducts, setVisibleProducts] = useState(1);
   const [dragTranslate, setDragTranslate] = useState(0);
@@ -84,7 +86,7 @@ export default function Slider({ products }) {
           transition: isDragging.current ? 'none' : 'transform 0.5s ease-in-out',
         }}
       >
-        {products.map((item, index) => (
+        {products?.filter(d=>d?.bestseller&&d?.[UserCountry])?.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-2 box-border"
