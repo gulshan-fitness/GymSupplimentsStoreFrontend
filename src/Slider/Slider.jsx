@@ -5,11 +5,14 @@ import ProductBox from '../Products/ProductBox';
 export default function Slider({ products }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleProducts, setVisibleProducts] = useState(1);
+  const [dragTranslate, setDragTranslate] = useState(0);
   const sliderRef = useRef(null);
+
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
   const touchEndX = useRef(0);
   const touchEndY = useRef(0);
+  const isDragging = useRef(false);
 
   // Responsive visible product count
   useEffect(() => {
@@ -29,33 +32,39 @@ export default function Slider({ products }) {
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev + visibleProducts >= products.length
-        ? prev
-        : prev + 1
+      prev + visibleProducts >= products.length ? prev : prev + 1
     );
   };
 
-  // Touch event handlers
+  // Touch event handlers for drag effect
   const onTouchStart = (e) => {
+    isDragging.current = true;
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
+    setDragTranslate(0);
   };
 
   const onTouchMove = (e) => {
+    if (!isDragging.current) return;
     touchEndX.current = e.touches[0].clientX;
     touchEndY.current = e.touches[0].clientY;
+    const deltaX = touchEndX.current - touchStartX.current;
+    setDragTranslate(deltaX);
   };
 
   const onTouchEnd = () => {
+    isDragging.current = false;
     const deltaX = touchStartX.current - touchEndX.current;
     const deltaY = touchStartY.current - touchEndY.current;
 
-    // Prevent accidental vertical scroll blocking
-    if (Math.abs(deltaY) > Math.abs(deltaX)) return;
-
     const threshold = 50;
-    if (deltaX > threshold) handleNext();
-    else if (deltaX < -threshold) handlePrev();
+
+    setDragTranslate(0);
+
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) handleNext(); // swipe left
+      else handlePrev();            // swipe right
+    }
   };
 
   const translateX = `-${(100 / visibleProducts) * currentIndex}%`;
@@ -69,8 +78,11 @@ export default function Slider({ products }) {
     >
       <div
         ref={sliderRef}
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(${translateX})` }}
+        className="flex"
+        style={{
+          transform: `translateX(calc(${translateX} + ${dragTranslate}px))`,
+          transition: isDragging.current ? 'none' : 'transform 0.5s ease-in-out',
+        }}
       >
         {products.map((item, index) => (
           <div
