@@ -7,9 +7,11 @@ export default function Slider({ products }) {
   const [visibleProducts, setVisibleProducts] = useState(1);
   const sliderRef = useRef(null);
   const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
   const touchEndX = useRef(0);
+  const touchEndY = useRef(0);
 
-  // Detect screen size and update number of visible products
+  // Responsive visible product count
   useEffect(() => {
     const updateVisibleProducts = () => {
       if (window.innerWidth >= 1024) setVisibleProducts(3);
@@ -21,37 +23,42 @@ export default function Slider({ products }) {
     return () => window.removeEventListener('resize', updateVisibleProducts);
   }, []);
 
-  // Navigation functions
   const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? products.length - visibleProducts : prev - 1
-    );
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev === products.length - visibleProducts ? 0 : prev + 1
+      prev + visibleProducts >= products.length
+        ? prev
+        : prev + 1
     );
   };
 
-  // Touch Events
+  // Touch event handlers
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const onTouchMove = (e) => {
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const onTouchEnd = () => {
-    const distance = touchStartX.current - touchEndX.current;
-    const threshold = 50; // Minimum swipe distance
-    if (distance > threshold) {
-      handleNext();
-    } else if (distance < -threshold) {
-      handlePrev();
-    }
+    const deltaX = touchStartX.current - touchEndX.current;
+    const deltaY = touchStartY.current - touchEndY.current;
+
+    // Prevent accidental vertical scroll blocking
+    if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+    const threshold = 50;
+    if (deltaX > threshold) handleNext();
+    else if (deltaX < -threshold) handlePrev();
   };
+
+  const translateX = `-${(100 / visibleProducts) * currentIndex}%`;
 
   return (
     <div
@@ -62,10 +69,8 @@ export default function Slider({ products }) {
     >
       <div
         ref={sliderRef}
-        className="flex transition-transform duration-500"
-        style={{
-          transform: `translateX(-${(100 / visibleProducts) * currentIndex}%)`,
-        }}
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(${translateX})` }}
       >
         {products.map((item, index) => (
           <div
@@ -78,18 +83,22 @@ export default function Slider({ products }) {
       </div>
 
       {/* Navigation Buttons */}
-      <button
-        onClick={handlePrev}
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full shadow-md z-10"
-      >
-        <FaChevronLeft className="text-black" />
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full shadow-md z-10"
-      >
-        <FaChevronRight className="text-black" />
-      </button>
+      {currentIndex > 0 && (
+        <button
+          onClick={handlePrev}
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full shadow-md z-10"
+        >
+          <FaChevronLeft className="text-black" />
+        </button>
+      )}
+      {currentIndex + visibleProducts < products.length && (
+        <button
+          onClick={handleNext}
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full shadow-md z-10"
+        >
+          <FaChevronRight className="text-black" />
+        </button>
+      )}
     </div>
   );
 }
