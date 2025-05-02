@@ -15,6 +15,67 @@ const [UserCountry,setUserCountry]=useState("")
 
 const [CountrySelectPopUp,setCountrySelectPopUp]=useState(false)
 
+const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Protein| Naturally Flavoured & Sweetened with Monk Fruit | No Preservatives, 25g Protein - Dark Chocolate, 1 kg",image:"(by Nutrabay) Instant Whey.jpg",link:"https://amzn.to/3SbawF7", brand:"Athlab",category:"Whey Protein",bestseller:true
+  // }, 
+  // {name:"(by Nutrabay) CreaPower Micronized Creatine Monohydrate Powder - 100g | 100% Creapure® from Germany | NABL Lab Tested | 3g Creatine/Serving | Increases Muscle Mass, Strength, & Power",image:"(by Nutrabay) CreaPower Micronized Creatine Monohydrate.jpg",link:"https://amzn.to/4jx2L8s", brand:"Athlab",category:"Creatine",bestseller:true
+  // },
+
+  {name:"Optimum Nutrition Gold Standard 100% Whey Protein Powder for Muscle Growth and Recovery with Glutamine and Natural BCAA Amino Acids 30 Servings, 900 g",image:"Optimum Nutrition Gold Standard Whey Protein Powder.jpg", brand:"Optimum Nutrition",category:"Whey Protein",bestseller:true,
+    IN:"",
+    US:"https://amzn.to/4cY7pKf",
+    GB:"https://amzn.to/3YXRaHh",
+    CA:"https://amzn.to/3EGR1Bk",
+    FR:"https://amzn.to/3ESFzT1",
+    DE:"https://amzn.to/4iFSntV",
+    IT:"https://amzn.to/432yAzg",
+
+  },
+
+  {name:"Optimum Nutrition Micronised Creatine Powder, 100% Pure Creatine Monohydrate Powder for Performance and Muscle Power, Unflavoured Shake, 93 Servings, 317 g",image:"Optimum Nutrition (ON) Micronized Creatine Powder.jpg", brand:"Optimum Nutrition",category:"Creatine",bestseller:true,
+    IN:"",
+    US:"https://amzn.to/3SffQax",
+    GB:"https://amzn.to/3YRIRN5",
+    CA:"https://amzn.to/4lRbt3b",
+    FR:"https://amzn.to/4jQVqR4",
+    DE:"https://amzn.to/3Yr1veK",
+    IT:"https://amzn.to/3YZNGUL",
+
+
+  },
+  {
+    name: "Dymatize Nutrition ISO100 Hydrolyzed Whey Protein Isolate | Fast-Digesting | Muscle Recovery Formula with Amino Acids | Low Sugar & Fat | Cookies & Cream | 5 Lbs",
+    image: "Dymatize Nutrition ISO100 Hydrolyzed Whey Protein Isolate.jpg",
+    brand: "Dymatize",
+    category: "Whey Protein",
+    bestseller: true,
+    IN: "https://amzn.to/4jY0NOm",
+    US: "https://amzn.to/3YXqo1L",
+    GB: "https://amzn.to/4lRy2EZ",
+    CA: "https://amzn.to/44dewfE",
+    FR: "https://amzn.to/3GB4Ce3",
+    DE: "https://amzn.to/3GtPTBE",
+    IT: "https://amzn.to/3S4u0LP",
+  },
+  
+  {
+    name: "Dymatize Nutrition Elite 100% Whey Protein | Muscle Recovery | 25g Protein, 5.5g BCAA | Fast-Absorbing Protein | Gluten-Free | Blend with BCAAs & Glutamine | Rich Chocolate | 5 Lbs",
+    image: "Dymatize Nutrition Elite 100 Whey Protein.jpg",
+    brand: "Dymatize",
+    category: "Whey Protein",
+    bestseller: true,
+    IN: "https://amzn.to/4kjfmfN",
+    US: "https://amzn.to/3Shg9BE",
+    GB: "https://amzn.to/4jsPSwe",
+    CA: "https://amzn.to/3GC1PkU",
+    FR: "https://amzn.to/3YVlmCQ",
+    DE: "https://amzn.to/4jXqgay",
+    IT: "https://amzn.to/3YpLyWc",
+  }
+
+
+
+])
+
   const notify = (msg, status) => {
     toast(msg, {
       position: "top-right",
@@ -23,6 +84,7 @@ const [CountrySelectPopUp,setCountrySelectPopUp]=useState(false)
   };
 
   const Brands = [
+    { name: "Jacked Factory"},
     { name: "Nutrabay" },
     { name: "Athlab" },
     { name: "Optimum Nutrition" },
@@ -97,6 +159,7 @@ const [CountrySelectPopUp,setCountrySelectPopUp]=useState(false)
     { name: "Perfectil" },
     { name: "Promunch" },
     { name: "Pintola" },
+    
     { name: "Redcon1" },
     { name: "RiteBite" },
     { name: "Ronnie Coleman" },
@@ -210,27 +273,7 @@ const Categories = [
   { name: "Tshirts" }
 ];
 
-const Products=[
 
-
-  // {name:"(by Nutrabay) Instant Whey Protein| Naturally Flavoured & Sweetened with Monk Fruit | No Preservatives, 25g Protein - Dark Chocolate, 1 kg",image:"(by Nutrabay) Instant Whey.jpg",link:"https://amzn.to/3SbawF7", brand:"Athlab",category:"Whey Protein",bestseller:true
-  // }, 
-  // {name:"(by Nutrabay) CreaPower Micronized Creatine Monohydrate Powder - 100g | 100% Creapure® from Germany | NABL Lab Tested | 3g Creatine/Serving | Increases Muscle Mass, Strength, & Power",image:"(by Nutrabay) CreaPower Micronized Creatine Monohydrate.jpg",link:"https://amzn.to/4jx2L8s", brand:"Athlab",category:"Creatine",bestseller:true
-  // },
-
-  {name:"Optimum Nutrition Gold Standard 100% Whey Protein Powder for Muscle Growth and Recovery with Glutamine and Natural BCAA Amino Acids 30 Servings, 900 g",image:"Optimum Nutrition Gold Standard Whey Protein Powder.jpg", brand:"Optimum Nutrition",category:"Whey Protein",bestseller:true,
-    IN:"",
-    US:"https://amzn.to/4cY7pKf",
-    GB:"https://amzn.to/3YXRaHh",
-    CA:"https://amzn.to/3EGR1Bk",
-    FR:"https://amzn.to/3ESFzT1",
-    DE:"https://amzn.to/4iFSntV",
-    IT:"https://amzn.to/432yAzg",
-
-
-  },
-
-]
 
 
  
@@ -241,7 +284,7 @@ const Products=[
   return (
     <Context.Provider
       value={{
-     notify,Products,Categories,Brands,UserCountry,setUserCountry,CountrySelectPopUp,setCountrySelectPopUp
+     notify,Products,Categories,Brands,UserCountry,setUserCountry,CountrySelectPopUp,setCountrySelectPopUp,setProducts
       }}
     >
       {props.children}
