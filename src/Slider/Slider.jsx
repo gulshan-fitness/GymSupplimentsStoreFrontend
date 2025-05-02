@@ -71,6 +71,8 @@ export default function Slider({ products }) {
 
   const translateX = `-${(100 / visibleProducts) * currentIndex}%`;
 
+ 
+  
   return (
     <div
       className="relative max-w-7xl mx-auto px-4 py-10 overflow-hidden"
@@ -85,8 +87,9 @@ export default function Slider({ products }) {
           transform: `translateX(calc(${translateX} + ${dragTranslate}px))`,
           transition: isDragging.current ? 'none' : 'transform 0.5s ease-in-out',
         }}
+          // filter(d=>d?.bestseller&&d?.[UserCountry])?
       >
-        {products?.filter(d=>d?.bestseller&&d?.[UserCountry])?.map((item, index) => (
+        {products?.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-2 box-border"
@@ -97,22 +100,23 @@ export default function Slider({ products }) {
       </div>
 
       {/* Navigation Buttons */}
-      {currentIndex > 0 && (
+    
         <button
           onClick={handlePrev}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
+          disabled={!(currentIndex > 0 )}
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
         >
           <FaChevronLeft className="text-black" />
         </button>
-      )}
-      {currentIndex + visibleProducts < products.length && (
+     
         <button
           onClick={handleNext}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
+          disabled={!(currentIndex + visibleProducts < products.length)}
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
         >
           <FaChevronRight className="text-black" />
         </button>
-      )}
+    
     </div>
   );
 }

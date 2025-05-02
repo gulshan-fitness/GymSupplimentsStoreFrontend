@@ -64,6 +64,9 @@ if (!StoredProducts || StoredProducts?.length==0) localStorage.setItem("Products
         {    
             localStorage.setItem("Products",JSON.stringify([...StoredProducts,productData]))
         }
+        else{
+          localStorage.setItem("Products",JSON.stringify([productData]))
+        }
 
 
         e.target.reset()
