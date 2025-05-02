@@ -37,6 +37,7 @@ export default function CountriesPopUp() {
                   value={UserCountry}
                   onChange={(e) => {setUserCountry(e.target.value)
                     localStorage.setItem("UserCountry",e.target.value)
+                    setCountrySelectPopUp(false)
                   }}
                   className="w-full px-4 py-2 bg-black border border-white text-white rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 >
@@ -55,13 +56,7 @@ export default function CountriesPopUp() {
                 </div>
               </div>
         
-              {/* Save or Continue Button (Optional) */}
-              <button
-                onClick={() => setCountrySelectPopUp(false)}
-                className="mt-6 w-full bg-yellow-500 text-black font-semibold py-2 rounded hover:bg-yellow-400 transition"
-              >
-                Save & Continue
-              </button>
+            
             </div>
           </div>
         

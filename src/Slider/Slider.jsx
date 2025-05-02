@@ -100,7 +100,7 @@ export default function Slider({ products }) {
       {currentIndex > 0 && (
         <button
           onClick={handlePrev}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full shadow-md z-10"
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
         >
           <FaChevronLeft className="text-black" />
         </button>
@@ -108,7 +108,7 @@ export default function Slider({ products }) {
       {currentIndex + visibleProducts < products.length && (
         <button
           onClick={handleNext}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded-full shadow-md z-10"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
         >
           <FaChevronRight className="text-black" />
         </button>
