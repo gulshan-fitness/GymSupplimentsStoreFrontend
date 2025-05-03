@@ -606,7 +606,7 @@ const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Prot
 
 {
   name: "The Whole Truth Whey Protein Isolate+Concentrate | Cold Coffee 1 kg (2.2 lbs) | 24g Protein/Scoop | 6.6g BCAA | 100% Authentic Whey & No Adulteration | Clean, Light & Easy to Digest | Vegetarian",
-  image: "The Whole Truth Whey Protein Isolate+Concentrate.jpg",
+  image: "The Whole Truth Whey Protein Isolate Concentrate.jpg",
   brand: "The Whole Truth",
   category: "Whey Protein",
   bestseller: true,
