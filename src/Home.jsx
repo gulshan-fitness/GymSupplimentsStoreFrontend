@@ -54,14 +54,24 @@ export default function Home(){
 
         {/* Featured Products */}
         <section className="py-4">
-          <h2 className="text-4xl font-bold  text-center tracking-tight text-white">
+          <h2 className="text-4xl font-bold  mb-8 text-center tracking-tight text-white">
             Best Sellers
           </h2>
 
 
+          <h2 className="text-2xl font-bold   text-center tracking-tight text-white">
+            Whey Protine
+          </h2>
+
+    <Slider products={Products?.filter(data=> data?.category=="Whey Protein" || data?.category=="Protein Powders")}/>
 
 
-    <Slider products={Products}/>
+    <h2 className="text-2xl font-bold   text-center tracking-tight text-white">
+            
+Creatine
+          </h2>
+
+    <Slider products={Products?.filter(data=> data?.category=="Creatine" )}/>
 
         </section>
 

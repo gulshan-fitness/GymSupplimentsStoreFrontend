@@ -75,7 +75,7 @@ export default function Slider({ products }) {
   
   return (
     <div
-      className="relative max-w-7xl mx-auto px-4 py-10 overflow-hidden"
+      className="relative max-w-7xl mx-auto px-4  overflow-hidden"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -104,7 +104,7 @@ export default function Slider({ products }) {
         <button
           onClick={handlePrev}
           disabled={!(currentIndex > 0 )}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
+          className={` ${!(currentIndex > 0)?" opacity-70":""} absolute top-1/2 left-0 transform -translate-y-1/2  p-4 rounded-full shadow-md z-10 bg-yellow-400 hover:bg-yellow-500`}
         >
           <FaChevronLeft className="text-black" />
         </button>
@@ -112,7 +112,9 @@ export default function Slider({ products }) {
         <button
           onClick={handleNext}
           disabled={!(currentIndex + visibleProducts < products.length)}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full shadow-md z-10"
+          className={` ${!(currentIndex + visibleProducts < products.length)? " opacity-70":""} 
+          bg-yellow-400 hover:bg-yellow-500
+          absolute top-1/2 right-0 transform -translate-y-1/2   p-4 rounded-full shadow-md z-10`}
         >
           <FaChevronRight className="text-black" />
         </button>
