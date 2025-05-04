@@ -5,19 +5,19 @@ import { Context } from '../Context_holder';
 export default function CountriesPopUp() {
     const{setUserCountry,UserCountry,setCountrySelectPopUp,CountrySelectPopUp}=useContext(Context)
 
-    const countries = [ { name: "India", code: "IN" },
-        { name: "United States", code: "US" },
-        { name: "United Kingdom", code: "GB" },
-        { name: "Canada", code: "CA" },
-        { name: "France", code: "FR" },
-        { name: "Germany", code: "DE" },
-        { name: "Italy", code: "IT" },
-         
-        
-      ];
+    const countries = [
+      { name: "India", code: "IN", flagUrl: "https://flagcdn.com/in.svg" },
+      { name: "United States", code: "US", flagUrl: "https://flagcdn.com/us.svg" },
+      { name: "United Kingdom", code: "GB", flagUrl: "https://flagcdn.com/gb.svg" },
+      { name: "Canada", code: "CA", flagUrl: "https://flagcdn.com/ca.svg" },
+      { name: "France", code: "FR", flagUrl: "https://flagcdn.com/fr.svg" },
+      { name: "Germany", code: "DE", flagUrl: "https://flagcdn.com/de.svg" },
+      { name: "Italy", code: "IT", flagUrl: "https://flagcdn.com/it.svg" },
+    ];
+    
       
       if(CountrySelectPopUp)  return (
-            <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 ">
             <div className="relative w-full max-w-sm  rounded-xl p-6 shadow-lg border border-white text-white">
               {/* Close Button */}
               <button

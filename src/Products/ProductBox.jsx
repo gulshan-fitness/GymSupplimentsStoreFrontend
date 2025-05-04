@@ -10,7 +10,7 @@ export default function ProductBox({item}){
   href={item?.[UserCountry]}
   target="_blank"
   rel="noopener noreferrer"
-  className="w-full md:w-1/3 p-2"
+  className="w-full  p-2"
 >
   <div className="group relative bg-white/5 backdrop-blur-lg p-2 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg  overflow-hidden transition-all duration-300 hover:scale-105   glow">
     

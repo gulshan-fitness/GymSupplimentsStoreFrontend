@@ -1076,9 +1076,9 @@ const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Prot
 const Categories = [
   { name: "Shaker" },
   
-  { name: "Protein Powders" },
+
   { name: "Whey Protein" },
-  { name: "Protein Blends" },
+
   { name: "Casein Protein" },
   { name: "Vegan Plant Protein" },
   { name: "High Protein Food" },
@@ -1159,7 +1159,9 @@ const Categories = [
 ];
 
 
-
+ const [ selectedCategory,setselectedCategory] = useState(null);
+    const [ selectedBrand,setselectedBrand] = useState("");
+    const [ selectedProduct,setselectedProduct] = useState("");
 
  
 
@@ -1169,7 +1171,7 @@ const Categories = [
   return (
     <Context.Provider
       value={{
-     notify,Products,Categories,Brands,UserCountry,setUserCountry,CountrySelectPopUp,setCountrySelectPopUp,setProducts
+     notify,Products,Categories,Brands,UserCountry,setUserCountry,CountrySelectPopUp,setCountrySelectPopUp,setProducts,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct
       }}
     >
       {props.children}

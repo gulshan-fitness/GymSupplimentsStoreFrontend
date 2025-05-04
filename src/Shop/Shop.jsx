@@ -1,0 +1,191 @@
+import React, { useContext, useEffect, useState } from "react";
+
+import { useSearchParams } from "react-router-dom";
+
+import { IoClose } from "react-icons/io5";
+
+import FilterSection from "./FilterSection";
+import { Context } from "../Context_holder";
+import HeadBar from "../HeadBar/HeadBar";
+import NightSky from "../NightSky/NightSky";
+import ProductBox from "../Products/ProductBox";
+import CountriesPopUp from "../CountriesPopUp/CountriesPopUp";
+
+export default function Shop() {
+  const {
+    setselectedCategory,
+    selectedCategory,
+    selectedBrand,
+    setselectedBrand,
+    selectedProduct,
+    setselectedProduct,
+    Products,
+    UserCountry,
+  } = useContext(Context);
+
+  const [filterPopUp, setfilterPopUp] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const resetHandler = () => {
+    setselectedBrand("");
+    setselectedCategory(null);
+    setselectedProduct("");
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryObject = {};
+    for (const [key, value] of params.entries()) {
+      queryObject[key] = value;
+    }
+
+    // Initialize state from query object
+    if (queryObject.selectedCategory) {
+      setselectedCategory({
+        value: queryObject.selectedCategory,
+        label: queryObject.selectedCategory,
+      });
+    }
+    if (queryObject.selectedBrand) {
+      setselectedBrand(queryObject.selectedBrand);
+    }
+    if (queryObject.selectedProduct) {
+      setselectedProduct(queryObject.selectedProduct);
+    }
+  }, []);
+
+  useEffect(() => {
+    const query = {};
+
+    if (selectedCategory !== null) {
+      query.selectedCategory = selectedCategory.value;
+    }
+
+    if (selectedBrand !== "") {
+      query.selectedBrand = selectedBrand;
+    }
+
+    if (selectedProduct !== "") {
+      query.selectedProduct = selectedProduct;
+    }
+
+    setSearchParams(query);
+  }, [selectedCategory, selectedBrand, selectedProduct]);
+
+  const filteredProducts = Products?.filter((product) => {
+    const matchCategory = selectedCategory
+      ? product.category === selectedCategory.value
+      : true;
+
+    const safeRegex = (input) => {
+      try {
+        return new RegExp(input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"); // escape special chars
+      } catch {
+        return null;
+      }
+    };
+
+    const brandRegex = selectedBrand ? safeRegex(selectedBrand) : null;
+    const productRegex = selectedProduct ? safeRegex(selectedProduct) : null;
+
+    const matchBrand = brandRegex ? brandRegex.test(product.brand) : true;
+    const matchProduct = productRegex ? productRegex.test(product.name) : true;
+
+    const matchCountry = UserCountry
+      ? product[UserCountry] && product[UserCountry].trim() !== ""
+      : true;
+
+    return matchCategory && matchBrand && matchProduct && matchCountry;
+  });
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const [quantities, setQuantities] = useState({});
+
+  const handleQtyChange = (id, type, value) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        [type]: value,
+      },
+    }));
+  };
+
+  return (
+    <div className=" relative min-h-screen py-8 font-sans overflow-hidden px-8">
+      {/* Background Night Sky */}
+      <NightSky />
+      <HeadBar />
+
+      <section className=" flex justify-center  sm:hidden ">
+        <button
+          className=" relative top-[70px] left-1 text-[#facc15] font-bold rounded-md capitalize px-3 py-1 glow3 "
+          onClick={() => setfilterPopUp(true)}
+        >
+          {" "}
+          filter Section
+        </button>
+      </section>
+
+      <div className="flex flex-col sm:flex-row mt-[80px] gap-4 ">
+        <div
+          className={`${
+            filteredProducts?.length == 0 ? "hidden" : ""
+          }text-white relative top-3 left-0 font-bold`}
+        >
+          ({filteredProducts?.length})
+        </div>
+        {/* Filter Section */}
+        <div className="w-full sm:w-1/4 lg:w-1/5 xl:w-1/6 py-5 hidden sm:block">
+          <FilterSection resetHandler={resetHandler} />
+        </div>
+
+        {/* Product Grid Section */}
+        <div className="w-full rounded-md overflow-y-auto thin-scrollbar py-3 max-h-screen min-h-[50px]">
+          {filteredProducts?.length === 0 ? (
+            <div className="text-sm py-10 text-white text-center font-bold">
+              No Products
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 sm:px-3">
+              {filteredProducts?.map((product, index) => (
+                <ProductBox key={index} item={product} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* hidden filter section */}
+      <section
+        className={`fixed  top-[55px]  h-[85%] w-[95%] flex z-10 px-5  rounded-md justify-center bg-black/80 backdrop-blur-sm  transition-all duration-300 ease-in-out ${
+          filterPopUp ? "left-0" : "left-[-150%] scale-95 pointer-events-none"
+        }`}
+      >
+        <IoClose
+          className="absolute top-[15px] z-10 right-2 text-2xl text-white cursor-pointer  transition"
+          onClick={() => setfilterPopUp(false)}
+        />
+
+        {/* Filter Container */}
+        <div className="  relative top-[35px] p-6 rounded-lg shadow-2xl w-full max-w-md  overflow-y-auto thin-scrollbar transition-all duration-300 ease-in-out">
+          <FilterSection resetHandler={resetHandler} />
+        </div>
+      </section>
+
+      {/* Pagination Section */}
+      {/* <section className={`${allProducts?.length === 0 ?"hidden":"block"}`}>
+  <Pagination handleDecrement={handleDecrement} handleIncrement={handleIncrement} page={page}total={allProducts?.length}/>
+
+  </section> */}
+
+      <CountriesPopUp />
+    </div>
+  );
+}

@@ -9,8 +9,10 @@ import axios from "axios"
 import { Context } from './Context_holder';
 import LinkkValidater from './LinkkValidater';
 import Admin from './AdminPanal/Admin';
+import Shop from './Shop/Shop';
+
 function App() {
-  const {setUserCountry,UserCountry,setCountrySelectPopUp}=useContext(Context)
+  const {setUserCountry,UserCountry,}=useContext(Context)
 
 
   useEffect(
@@ -59,6 +61,10 @@ function App() {
             path: "/itsgulshanfitnesspointadmin",
             element:<Admin/>},
 
+            {
+              path: "/shop",
+              element:<Shop/>},
+
   
   
   
@@ -72,6 +78,7 @@ function App() {
    
     return (
   <RouterProvider router={routes}/>
+  
       
   
     );
