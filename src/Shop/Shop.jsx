@@ -33,45 +33,8 @@ export default function Shop() {
     setselectedProduct("");
   };
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const queryObject = {};
-    for (const [key, value] of params.entries()) {
-      queryObject[key] = value;
-    }
 
-    // Initialize state from query object
-    if (queryObject.selectedCategory) {
-      setselectedCategory({
-        value: queryObject.selectedCategory,
-        label: queryObject.selectedCategory,
-      });
-    }
-    if (queryObject.selectedBrand) {
-      setselectedBrand(queryObject.selectedBrand);
-    }
-    if (queryObject.selectedProduct) {
-      setselectedProduct(queryObject.selectedProduct);
-    }
-  }, []);
 
-  useEffect(() => {
-    const query = {};
-
-    if (selectedCategory !== null) {
-      query.selectedCategory = selectedCategory.value;
-    }
-
-    if (selectedBrand !== "") {
-      query.selectedBrand = selectedBrand;
-    }
-
-    if (selectedProduct !== "") {
-      query.selectedProduct = selectedProduct;
-    }
-
-    setSearchParams(query);
-  }, [selectedCategory, selectedBrand, selectedProduct]);
 
   const filteredProducts = Products?.filter((product) => {
     const matchCategory = selectedCategory
@@ -99,23 +62,9 @@ export default function Shop() {
     return matchCategory && matchBrand && matchProduct && matchCountry;
   });
 
-  const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
 
-  const [quantities, setQuantities] = useState({});
-
-  const handleQtyChange = (id, type, value) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        [type]: value,
-      },
-    }));
-  };
+  
 
   return (
     <div className=" relative min-h-screen py-8 font-sans overflow-hidden px-8">
