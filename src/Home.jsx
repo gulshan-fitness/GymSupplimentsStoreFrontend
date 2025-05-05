@@ -6,7 +6,7 @@ import Slider from "./Slider/Slider";
 import { Context } from "./Context_holder";
 
 import CountriesPopUp from "./CountriesPopUp/CountriesPopUp";
-import { Link } from "react-router-dom";
+
 import HeadBar from "./HeadBar/HeadBar";
 import Shop from "./Shop/Shop";
 
@@ -50,14 +50,13 @@ export default function Home(){
 
   <section>
       {
-   (
-    UserCountry === "IN" ||
+   (UserCountry&&(UserCountry === "IN" ||
     UserCountry === "US" ||
     UserCountry === "GB" ||
     UserCountry === "CA" ||
     UserCountry === "FR" ||
     UserCountry === "DE" ||
-    UserCountry === "IT"
+    UserCountry === "IT")
   )?(
     <div>
     {/* Hero Section */}
@@ -86,7 +85,7 @@ export default function Home(){
            Whey Protine <span className="text-white ">  ({Products?.filter(data=> data?.category=="Whey Protein" && data?.[UserCountry]).length})</span>
          </h2>
 
-   <Slider products={Products?.filter(data=> data?.category=="Whey Protein" && data?.[UserCountry])}/>
+   <Slider  products={UserCountry &&Products?.filter(data=> data?.category=="Whey Protein" && data?.[UserCountry])}/>
 
    <div className="flex justify-center font-semibold text-yellow-400 mb-[50px] "> <button className="border px-3 rounded-md glow3 border-yellow-400"
    onClick={()=>{
@@ -102,7 +101,7 @@ export default function Home(){
 
   
 
-   <Slider products={Products?.filter(data=> data?.category=="Creatine" &&  data?.[UserCountry] )}/>
+   <Slider products={ UserCountry&&Products?.filter(data=> data?.category=="Creatine" &&  data?.[UserCountry] )}/>
 
 
    <div className="flex justify-center font-semibold text-yellow-400 mb-[50px] "> <button className="border px-3 rounded-md glow3 border-yellow-400"
@@ -124,7 +123,7 @@ export default function Home(){
 
   
 
-   <Slider products={Products?.filter(data=> data?.category=="Pre Workout" &&  data?.[UserCountry] )}/>
+   <Slider products={UserCountry&& Products?.filter(data=> data?.category=="Pre Workout" &&  data?.[UserCountry] )}/>
 
      
    <div className="flex justify-center font-semibold text-yellow-400 mb-[50px] " onClick={()=>{

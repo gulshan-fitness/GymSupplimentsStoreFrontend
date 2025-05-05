@@ -45,6 +45,7 @@ function App() {
 
 
   useEffect(() => {
+    
     if (!UserCountry) return; // <-- guard clause
   
     const allowedCountries = ["IN", "US", "GB", "CA", "FR", "DE", "IT"];
