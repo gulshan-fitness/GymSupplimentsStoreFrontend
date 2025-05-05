@@ -22,13 +22,16 @@ function App() {
       if (selectedCountry) {
         setUserCountry(selectedCountry);
       }
+
        else{
-        axios.get(`http://ip-api.com/json`)
+        axios.get(`https://ipwho.is/`)
         .then((res) => {
+        console.log(res.data.country_code);
         
-          if (res.data.status === "success"){ setUserCountry(res.data.countryCode);
+          if (res.data.success){ 
+            setUserCountry(res.data.country_code);
             
-            localStorage.setItem("UserCountry",res.data.countryCode)
+            localStorage.setItem("UserCountry",res.data.country_code)
           }
           else{setCountrySelectPopUp(true)}
         })
@@ -45,14 +48,14 @@ function App() {
 
 
   useEffect(() => {
-    
+
     if (!UserCountry) return; // <-- guard clause
   
     const allowedCountries = ["IN", "US", "GB", "CA", "FR", "DE", "IT"];
     if (!allowedCountries.includes(UserCountry)) {
       setCountrySelectPopUp(true);
     }
-  }, [UserCountry]);
+  },[UserCountry]);
   
 
   

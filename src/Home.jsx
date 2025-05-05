@@ -14,7 +14,7 @@ import Shop from "./Shop/Shop";
 
 export default function Home(){
 
-  const {Products,UserCountry,setselectedCategory,countries}=useContext(Context)
+  const {Products,UserCountry,setselectedCategory}=useContext(Context)
   const [shopPage,setshopPage]=useState(false)
 
   useEffect(() => {
