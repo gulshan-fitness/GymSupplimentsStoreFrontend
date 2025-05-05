@@ -14,7 +14,7 @@ import Shop from "./Shop/Shop";
 
 export default function Home(){
 
-  const {Products,UserCountry,setselectedCategory}=useContext(Context)
+  const {Products,UserCountry,setselectedCategory,countries}=useContext(Context)
   const [shopPage,setshopPage]=useState(false)
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function Home(){
     UserCountry === "FR" ||
     UserCountry === "DE" ||
     UserCountry === "IT"
-  )&&(
+  )?(
     <div>
     {/* Hero Section */}
     <section className="flex flex-col items-center text-center mt-28 mb-12 px-4">
@@ -160,6 +160,17 @@ export default function Home(){
        </section>  
 
  </div>)
+ :(
+  <div className="fixed top-[100px] w-full left-0 text-center font-medium ">
+    <div className="glow3 px-2 mb-5">Products Are Coming Soon For Your Country</div>
+   <a 
+    href="https://www.facebook.com/gymlegionproduction/"
+    target="_blank"
+    rel="noopener noreferrer"
+   className=" px-3 rounded glow"> DM !</a>
+   
+    </div>
+ )
   }
 
  
