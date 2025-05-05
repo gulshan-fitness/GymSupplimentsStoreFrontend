@@ -20,8 +20,10 @@ export default function HeadBar({setshopPage}) {
      <button className="ml-auto flex items-center text-xs sm:text-sm font-medium gap-1"
      onClick={()=>setCountrySelectPopUp(true)}
      >
-
-      <img src={`${selectFlag?.flagUrl}`} alt="" className='h-3 glow' />
+{selectFlag?.flagUrl&&
+  <img src={`${selectFlag?.flagUrl}`} alt="" className='h-3 glow' />
+}
+    
        
      
        <span className="text-white">{UserCountry}</span>

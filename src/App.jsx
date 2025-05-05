@@ -12,7 +12,7 @@ import Admin from './AdminPanal/Admin';
 import Shop from './Shop/Shop';
 
 function App() {
-  const {setUserCountry,UserCountry,}=useContext(Context)
+  const {setUserCountry,UserCountry,setCountrySelectPopUp}=useContext(Context)
 
 
   useEffect(
@@ -44,7 +44,15 @@ function App() {
   )
 
 
-
+  useEffect(() => {
+    if (!UserCountry) return; // <-- guard clause
+  
+    const allowedCountries = ["IN", "US", "GB", "CA", "FR", "DE", "IT"];
+    if (!allowedCountries.includes(UserCountry)) {
+      setCountrySelectPopUp(true);
+    }
+  }, [UserCountry]);
+  
 
   
 
