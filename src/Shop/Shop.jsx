@@ -107,7 +107,7 @@ export default function Shop() {
 
       {/* hidden filter section */}
       <section
-        className={`fixed  top-[55px]  h-[85%] w-[95%] flex z-10 px-5  rounded-md justify-center bg-black/80 backdrop-blur-sm  transition-all duration-300 ease-in-out ${
+        className={`fixed  top-[55px] h-screen w-[95%] flex z-10 px-5  rounded-md justify-center bg-black/80 backdrop-blur-sm  transition-all duration-300 ease-in-out ${
           filterPopUp ? "left-0" : "left-[-150%] scale-95 pointer-events-none"
         }`}
       >
