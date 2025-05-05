@@ -93,7 +93,7 @@ export default function Shop() {
         <div className="w-full rounded-md overflow-y-auto thin-scrollbar py-3 max-h-screen min-h-[50px]">
           {filteredProducts?.length === 0 ? (
             <div className="text-sm py-10 text-white text-center font-bold">
-              No Products
+             Coming Soon...
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 sm:px-3">
@@ -118,8 +118,10 @@ export default function Shop() {
 
         {/* Filter Container */}
         <div className="  relative top-[35px] p-6 rounded-lg shadow-2xl w-full max-w-md  overflow-y-auto thin-scrollbar transition-all duration-300 ease-in-out">
-          <FilterSection resetHandler={resetHandler} />
+          <FilterSection resetHandler={resetHandler}  setfilterPopUp={setfilterPopUp}/>
         </div>
+
+        
       </section>
 
      

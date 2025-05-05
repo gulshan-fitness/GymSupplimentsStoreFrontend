@@ -6,10 +6,10 @@ import Select from "react-select";
 import { Context } from "../Context_holder";
 
 
-export default function FilterSection({resetHandler}){
+export default function FilterSection({resetHandler,setfilterPopUp}){
 
 
-    const {Categories,filterRemover,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct
+    const {Categories,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct
      
     }=useContext(Context);
   
@@ -44,7 +44,8 @@ export default function FilterSection({resetHandler}){
    
   
     return (
-      <div className=" text-white py-2 rounded-xl border glow2 border-white px-2 max-h-screen thin-scrollbar overflow-y-auto">
+    <>
+       <div className=" text-white py-2 rounded-xl border glow2 border-white px-2 max-h-screen thin-scrollbar overflow-y-auto">
       <h2 className="text-lg  px-3 pb-4 text-center font-semibold rounded-t-xl shadow-md text-[#f6fffa]">
        Filters
       </h2>
@@ -138,8 +139,17 @@ onChange={(e)=>{
         Reset
       </button>
      
-    
+
     </div>
+
+    <div className="flex justify-center font-semibold text-yellow-400 mt-7  "> <button className="border px-3 rounded-md glow3 border-yellow-400"
+    onClick={()=>{
+      setfilterPopUp(false)
+      
+    }}
+    >Done</button> </div>
+    </>
+   
     );
   };
  
