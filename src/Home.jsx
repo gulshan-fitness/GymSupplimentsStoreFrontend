@@ -1,4 +1,4 @@
-import React, {  useContext,  } from "react";
+import React, {  useContext, useEffect, useState,  } from "react";
 import NightSky from "./NightSky/NightSky";
 
 
@@ -8,12 +8,18 @@ import { Context } from "./Context_holder";
 import CountriesPopUp from "./CountriesPopUp/CountriesPopUp";
 import { Link } from "react-router-dom";
 import HeadBar from "./HeadBar/HeadBar";
+import Shop from "./Shop/Shop";
 
 
 
 export default function Home(){
 
-  const {Products}=useContext(Context)
+  const {Products,UserCountry,setselectedCategory}=useContext(Context)
+  const [shopPage,setshopPage]=useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0);  // Scrolls to the top of the page (x=0, y=0)
+  },[shopPage]);  
  
   return (
     <div className="relative min-h-screen font-sans overflow-hidden">
@@ -28,47 +34,96 @@ export default function Home(){
 
  {/* Navbar */}
 
- <HeadBar/>
+ <HeadBar  setshopPage={setshopPage}/>
 
+{/* home sectction */}
+{
+  shopPage?(
+<Shop/>  )
+  :(<section>
 
-     
-
-       {/* Hero Section */}
-<section className="flex flex-col items-center text-center mt-28 mb-12 px-4">
+    {/* Hero Section */}
+    <section className="flex flex-col items-center text-center mt-28 mb-12 px-4">
   <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
     Fuel Your Strength
   </h1>
   <p className="text-base sm:text-lg md:text-2xl capitalize text-gray-400 mt-4 mb-8 max-w-2xl">
     Premium supplements for athletes, bodybuilders, and fitness enthusiasts.
   </p>
-  <Link to={"/shop"} className="px-8 py-4 bg-yellow-400   text-black font-semibold rounded-full  transition-all duration-300 shadow-lg">
+  <button  className="px-8 py-4 bg-yellow-400   text-black font-semibold rounded-full  transition-all duration-300 shadow-lg" onClick={()=> setshopPage(true)}>
     Shop Now
-  </Link>
+  </button>
 </section>
 
 
         {/* Featured Products */}
+
         <section className="py-4">
           <h2 className="text-4xl font-bold  mb-8 text-center tracking-tight text-white">
             Best Sellers
           </h2>
 
 
-          <h2 className="text-2xl font-bold   text-center tracking-tight text-white">
-            Whey Protine
+          <h2 className="text-2xl font-bold   text-center tracking-tight text-yellow-400">
+            Whey Protine <span className="text-white ">  ({Products?.filter(data=> data?.category=="Whey Protein" && data?.[UserCountry]).length})</span>
           </h2>
 
-    <Slider products={Products?.filter(data=> data?.category=="Whey Protein" || data?.category=="Protein Powders")}/>
+    <Slider products={Products?.filter(data=> data?.category=="Whey Protein" && data?.[UserCountry])}/>
+
+    <div className="flex justify-center font-semibold text-yellow-400 mb-[50px] "> <button className="border px-3 rounded-md glow3 border-yellow-400"
+    onClick={()=>{
+      setselectedCategory({label:"Whey Protein",value:"Whey Protein"})
+      setshopPage(true)
+    }}
+    >View All</button> </div>
 
 
-    <h2 className="text-2xl font-bold   text-center tracking-tight text-white">
-            
-Creatine
+    <h2 className="text-2xl font-bold   text-center tracking-tight text-yellow-400">
+    Creatine <span className="text-white ">  ({Products?.filter(data=> data?.category=="Creatine" && data?.[UserCountry]).length})</span>
           </h2>
 
-    <Slider products={Products?.filter(data=> data?.category=="Creatine" )}/>
+   
+
+    <Slider products={Products?.filter(data=> data?.category=="Creatine" &&  data?.[UserCountry] )}/>
+
+
+    <div className="flex justify-center font-semibold text-yellow-400 mb-[50px] "> <button className="border px-3 rounded-md glow3 border-yellow-400"
+    onClick={()=>{
+      setselectedCategory({label:"Creatine",value:"Creatine"})
+      setshopPage(true)
+    }}
+    >View All</button> </div>
+
+
+
+
+
+
+
+    <h2 className="text-2xl font-bold   text-center tracking-tight text-yellow-400">
+    Pre Workout <span className="text-white ">  ({Products?.filter(data=> data?.category=="Pre Workout" && data?.[UserCountry]).length})</span>
+          </h2>
+
+   
+
+    <Slider products={Products?.filter(data=> data?.category=="Pre Workout" &&  data?.[UserCountry] )}/>
+
+      
+    <div className="flex justify-center font-semibold text-yellow-400 mb-[50px] " onClick={()=>{
+      setselectedCategory({label:"Pre Workout",value:"Pre Workout"})
+      setshopPage(true)
+    }}> <button className="border px-3 rounded-md glow3 border-yellow-400">View All</button> </div>
 
         </section>
+
+        
+
+
+
+
+
+
+
 
         {/* About Section */}
         <section className="flex flex-col md:flex-row items-center justify-center  rounded-xl">
@@ -86,13 +141,23 @@ Creatine
             <p className="text-gray-300 mb-6">
               We provide scientifically formulated supplements with clean ingredients to fuel your performance and recovery. Trusted by top athletes and fitness professionals.
             </p>
-            <Link  to={"/shop"} className="px-8 py-4 bg-yellow-400   text-black font-semibold rounded-full  transition-all duration-300 shadow-lg">
+            <button  className="px-8 py-4 bg-yellow-400   text-black font-semibold rounded-full  transition-all duration-300 shadow-lg" 
+            onClick={()=> setshopPage(true)}>
     Shop Now
-  </Link >
+  </button >
           </div>
         </section>  
+</section>)
+}
+
+     
+
+   
 
         {/* Footer */}
+
+
+
 
         <footer className="text-center p-4 text-gray-500">
           © 2025 Gym Legion. All rights reserved.

@@ -82,7 +82,7 @@ export default function Slider({ products }) {
     >
       <div
         ref={sliderRef}
-        className="flex"
+        className="flex "
         style={{
           transform: `translateX(calc(${translateX} + ${dragTranslate}px))`,
           transition: isDragging.current ? 'none' : 'transform 0.5s ease-in-out',

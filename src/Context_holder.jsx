@@ -1,7 +1,7 @@
 
-import React, { createContext, useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { createContext, useState } from "react";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -211,6 +211,20 @@ const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Prot
     IT:"https://amzn.to/432yAzg",
 
   },
+  {
+    name: "Jacked Factory Creatine Monohydrate Powder 425g - Canadian-Owned Informed Choice Certified Supplement for Increased Muscle Mass*, Improved Strength, Power, & Performance** - 85 Servings, Unflavored",
+    image: "Jacked Factory Creatine Monohydrate Powder 425g.jpg",
+    brand: "Jacked Factory",
+    category: "Creatine",
+    bestseller: true,
+    IN: "",
+    US: "https://amzn.to/4jD97Dy",
+    GB: "",
+    CA: "https://amzn.to/431VA1e",
+    FR: "",
+    DE: "",
+    IT: "",
+  },
 
   {name:"Optimum Nutrition Micronised Creatine Powder, 100% Pure Creatine Monohydrate Powder for Performance and Muscle Power, Unflavoured Shake, 93 Servings, 317 g",image:"Optimum Nutrition (ON) Micronized Creatine Powder.jpg", brand:"Optimum Nutrition",category:"Creatine",bestseller:true,
     IN:"",
@@ -269,20 +283,7 @@ const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Prot
   IT: "https://amzn.to/4d2mwmb",
 },
 
-{
-  name: "Jacked Factory Creatine Monohydrate Powder 425g - Canadian-Owned Informed Choice Certified Supplement for Increased Muscle Mass*, Improved Strength, Power, & Performance** - 85 Servings, Unflavored",
-  image: "Jacked Factory Creatine Monohydrate Powder 425g.jpg",
-  brand: "Jacked Factory",
-  category: "Creatine",
-  bestseller: true,
-  IN: "",
-  US: "https://amzn.to/4jD97Dy",
-  GB: "",
-  CA: "https://amzn.to/431VA1e",
-  FR: "",
-  DE: "",
-  IT: "",
-},
+
 
 {
   name: "MuscleTech Platinum 100% Creatine Powder (Unflavoured - 250 Gram,83 Serves),Scientifically Researched to Build Muscle - Increase Muscle Power,Boost Strength & Enhance Performance,1 count,83 servings",
@@ -951,12 +952,12 @@ const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Prot
 
 ])
 
-  const notify = (msg, status) => {
-    toast(msg, {
-      position: "top-right",
-      type: status === 1 ? "success" : "error",
-    });
-  };
+  // const notify = (msg, status) => {
+  //   toast(msg, {
+  //     position: "top-right",
+  //     type: status === 1 ? "success" : "error",
+  //   });
+  // };
 
   const Brands = [
     { name: "Bpi Sport"},
@@ -1163,7 +1164,15 @@ const Categories = [
     const [ selectedBrand,setselectedBrand] = useState("");
     const [ selectedProduct,setselectedProduct] = useState("");
 
- 
+    const countries = [
+      { name: "India", code: "IN", flagUrl: "https://flagcdn.com/in.svg" },
+      { name: "United States", code: "US", flagUrl: "https://flagcdn.com/us.svg" },
+      { name: "United Kingdom", code: "GB", flagUrl: "https://flagcdn.com/gb.svg" },
+      { name: "Canada", code: "CA", flagUrl: "https://flagcdn.com/ca.svg" },
+      { name: "France", code: "FR", flagUrl: "https://flagcdn.com/fr.svg" },
+      { name: "Germany", code: "DE", flagUrl: "https://flagcdn.com/de.svg" },
+      { name: "Italy", code: "IT", flagUrl: "https://flagcdn.com/it.svg" },
+    ];
 
 
 
@@ -1171,12 +1180,12 @@ const Categories = [
   return (
     <Context.Provider
       value={{
-     notify,Products,Categories,Brands,UserCountry,setUserCountry,CountrySelectPopUp,setCountrySelectPopUp,setProducts,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct
+     Products,Categories,Brands,UserCountry,setUserCountry,CountrySelectPopUp,setCountrySelectPopUp,setProducts,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct,countries
       }}
     >
       {props.children}
 
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </Context.Provider>
   );
 }

@@ -17,6 +17,7 @@ function App() {
 
   useEffect(
     ()=>{
+     
       const selectedCountry=localStorage.getItem("UserCountry")
       if (selectedCountry) {
         setUserCountry(selectedCountry);
@@ -61,10 +62,7 @@ function App() {
             path: "/itsgulshanfitnesspointadmin",
             element:<Admin/>},
 
-            {
-              path: "/shop",
-              element:<Shop/>},
-
+          
   
   
   

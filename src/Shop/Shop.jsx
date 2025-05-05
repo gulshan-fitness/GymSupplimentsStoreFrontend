@@ -6,10 +6,9 @@ import { IoClose } from "react-icons/io5";
 
 import FilterSection from "./FilterSection";
 import { Context } from "../Context_holder";
-import HeadBar from "../HeadBar/HeadBar";
-import NightSky from "../NightSky/NightSky";
+
 import ProductBox from "../Products/ProductBox";
-import CountriesPopUp from "../CountriesPopUp/CountriesPopUp";
+
 
 export default function Shop() {
   const {
@@ -25,7 +24,7 @@ export default function Shop() {
 
   const [filterPopUp, setfilterPopUp] = useState(false);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+
 
   const resetHandler = () => {
     setselectedBrand("");
@@ -67,29 +66,24 @@ export default function Shop() {
   
 
   return (
-    <div className=" relative min-h-screen py-8 font-sans overflow-hidden px-8">
-      {/* Background Night Sky */}
-      <NightSky />
-      <HeadBar />
+    <div className=" relative min-h-screen py-8 font-sans overflow-hidden ">
+     
+     
+     
 
       <section className=" flex justify-center  sm:hidden ">
         <button
           className=" relative top-[70px] left-1 text-[#facc15] font-bold rounded-md capitalize px-3 py-1 glow3 "
           onClick={() => setfilterPopUp(true)}
         >
-          {" "}
+          
           filter Section
         </button>
+     
       </section>
 
       <div className="flex flex-col sm:flex-row mt-[80px] gap-4 ">
-        <div
-          className={`${
-            filteredProducts?.length == 0 ? "hidden" : ""
-          }text-white relative top-3 left-0 font-bold`}
-        >
-          ({filteredProducts?.length})
-        </div>
+        
         {/* Filter Section */}
         <div className="w-full sm:w-1/4 lg:w-1/5 xl:w-1/6 py-5 hidden sm:block">
           <FilterSection resetHandler={resetHandler} />
@@ -128,13 +122,7 @@ export default function Shop() {
         </div>
       </section>
 
-      {/* Pagination Section */}
-      {/* <section className={`${allProducts?.length === 0 ?"hidden":"block"}`}>
-  <Pagination handleDecrement={handleDecrement} handleIncrement={handleIncrement} page={page}total={allProducts?.length}/>
-
-  </section> */}
-
-      <CountriesPopUp />
+     
     </div>
   );
 }

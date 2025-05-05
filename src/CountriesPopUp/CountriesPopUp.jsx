@@ -3,17 +3,9 @@ import { useContext } from 'react';
 import { Context } from '../Context_holder';
 
 export default function CountriesPopUp() {
-    const{setUserCountry,UserCountry,setCountrySelectPopUp,CountrySelectPopUp}=useContext(Context)
+    const{setUserCountry,UserCountry,setCountrySelectPopUp,CountrySelectPopUp,countries}=useContext(Context)
 
-    const countries = [
-      { name: "India", code: "IN", flagUrl: "https://flagcdn.com/in.svg" },
-      { name: "United States", code: "US", flagUrl: "https://flagcdn.com/us.svg" },
-      { name: "United Kingdom", code: "GB", flagUrl: "https://flagcdn.com/gb.svg" },
-      { name: "Canada", code: "CA", flagUrl: "https://flagcdn.com/ca.svg" },
-      { name: "France", code: "FR", flagUrl: "https://flagcdn.com/fr.svg" },
-      { name: "Germany", code: "DE", flagUrl: "https://flagcdn.com/de.svg" },
-      { name: "Italy", code: "IT", flagUrl: "https://flagcdn.com/it.svg" },
-    ];
+   
     
       
       if(CountrySelectPopUp)  return (
