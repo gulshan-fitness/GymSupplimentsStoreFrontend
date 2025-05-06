@@ -48,9 +48,27 @@ function App() {
   };
   
   
+const location_api=()=>{
+  axios.get(`https://ipwho.is/`)
+  .then((res) => {
+  
+  
+    if (res.data.success){ 
+      setUserCountry(res.data.country_code);
+      
+      localStorage.setItem("UserCountry",res.data.country_code)
+    }
+    else{setCountrySelectPopUp(true)}
+  })
+
+  .catch((error) => setCountrySelectPopUp(true)); 
+}
+
 
   useEffect(
     ()=>{
+ 
+      
 
       const selectedCountry=localStorage.getItem("UserCountry")
 
@@ -60,57 +78,40 @@ function App() {
 
     else{
       if (navigator.geolocation){
+        
         navigator.geolocation.getCurrentPosition(
           (position)=>{
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
         
           const code=findCountryFromCoords(latitude,longitude)
+
+       
+          
           
           if(code){
             setUserCountry(code)
-           
-            
+            localStorage.setItem("UserCountry",code)
+             
           }
         
           else{
-            setCountrySelectPopUp(true)
+
+
+            location_api()
+           
           }
         
           },
           (err)=>{
-            setCountrySelectPopUp(true)
+            location_api()
           }
         )
       }
+
+      else location_api()
      
     }
-
-
-
-       
-  
-
-   
-      
-   
-      
-      //  else{
-      //   axios.get(`https://ipwho.is/`)
-      //   .then((res) => {
-      //   console(res.data.country_code);
-        
-      //     if (res.data.success){ 
-      //       setUserCountry(res.data.country_code);
-            
-      //       localStorage.setItem("UserCountry",res.data.country_code)
-      //     }
-      //     else{setCountrySelectPopUp(true)}
-      //   })
-    
-      //   .catch((error) => setCountrySelectPopUp(true)); 
-      //  }
-
 
     },
     [UserCountry]
