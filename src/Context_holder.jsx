@@ -1164,15 +1164,91 @@ const Categories = [
     const [ selectedBrand,setselectedBrand] = useState("");
     const [ selectedProduct,setselectedProduct] = useState("");
 
+    // const countries = [
+    //   { name: "India", code: "IN", flagUrl: "https://flagcdn.com/in.svg" },
+    //   { name: "United States", code: "US", flagUrl: "https://flagcdn.com/us.svg" },
+    //   { name: "United Kingdom", code: "GB", flagUrl: "https://flagcdn.com/gb.svg" },
+    //   { name: "Canada", code: "CA", flagUrl: "https://flagcdn.com/ca.svg" },
+    //   { name: "France", code: "FR", flagUrl: "https://flagcdn.com/fr.svg" },
+    //   { name: "Germany", code: "DE", flagUrl: "https://flagcdn.com/de.svg" },
+    //   { name: "Italy", code: "IT", flagUrl: "https://flagcdn.com/it.svg" },
+    // ];
+
     const countries = [
-      { name: "India", code: "IN", flagUrl: "https://flagcdn.com/in.svg" },
-      { name: "United States", code: "US", flagUrl: "https://flagcdn.com/us.svg" },
-      { name: "United Kingdom", code: "GB", flagUrl: "https://flagcdn.com/gb.svg" },
-      { name: "Canada", code: "CA", flagUrl: "https://flagcdn.com/ca.svg" },
-      { name: "France", code: "FR", flagUrl: "https://flagcdn.com/fr.svg" },
-      { name: "Germany", code: "DE", flagUrl: "https://flagcdn.com/de.svg" },
-      { name: "Italy", code: "IT", flagUrl: "https://flagcdn.com/it.svg" },
+      {
+        name: "India",
+        code: "IN",
+        flagUrl: "https://flagcdn.com/in.svg",
+        bounds: [
+          { lat: [6.5, 37.1], lon: [68.1, 97.4] },    // Mainland India
+          { lat: [6.7, 13.4], lon: [92.0, 94.5] },     // Andaman & Nicobar Islands
+          { lat: [10.5, 13.0], lon: [72.0, 74.0] },    // Lakshadweep
+        ],
+      },
+      {
+        name: "United States",
+        code: "US",
+        flagUrl: "https://flagcdn.com/us.svg",
+        bounds: [
+          { lat: [24.5, 49.5], lon: [-125, -66.9] },   // Mainland USA
+          { lat: [18.5, 20.5], lon: [-156, -154] },    // Hawaii
+          { lat: [51.2, 71.5], lon: [-169, -129] },    // Alaska
+          { lat: [17.5, 18.5], lon: [-67.3, -65.2] },  // Puerto Rico
+        ],
+      },
+      {
+        name: "Italy",
+        code: "IT",
+        flagUrl: "https://flagcdn.com/it.svg",
+        bounds: [
+          { lat: [36.6, 47.1], lon: [6.6, 18.5] },    // Mainland Italy
+          { lat: [38.5, 39.5], lon: [9.5, 12.5] },     // Sardinia
+          { lat: [37.5, 38.5], lon: [12.0, 13.0] },    // Sicily
+        ],
+      },
+      {
+        name: "France",
+        code: "FR",
+        flagUrl: "https://flagcdn.com/fr.svg",
+        bounds: [
+          { lat: [41.3, 51.1], lon: [-5.2, 9.6] },     // Mainland France
+          { lat: [14.3, 18.3], lon: [-60.0, -53.2] },  // French Guiana (South America)
+          { lat: [16.2, 17.2], lon: [-61.5, -60.2] },  // Guadeloupe
+          { lat: [17.0, 19.5], lon: [-63.5, -61.8] },  // Martinique
+          { lat: [4.0, 13.0], lon: [55.0, 56.0] },     // Réunion (Indian Ocean)
+          { lat: [-21.0, -17.0], lon: [63.0, 65.0] },  // Mayotte (Indian Ocean)
+        ],
+      },
+      {
+        name: "Canada",
+        code: "CA",
+        flagUrl: "https://flagcdn.com/ca.svg",
+        bounds: [
+          { lat: [41.7, 83.1], lon: [-141.0, -52.6] },  // Mainland Canada
+          { lat: [60.0, 83.1], lon: [-141.0, -52.6] },  // Northern Canada
+          { lat: [46.0, 49.4], lon: [-66.8, -64.2] },   // Newfoundland
+        ],
+      },
+      {
+        name: "Germany",
+        code: "DE",
+        flagUrl: "https://flagcdn.com/de.svg",
+        bounds: [
+          { lat: [47.2, 55.1], lon: [5.9, 15.0] },     // Mainland Germany
+          { lat: [54.5, 55.5], lon: [8.5, 9.5] },      // Helgoland Islands
+          { lat: [53.5, 54.0], lon: [8.0, 9.0] },      // North Sea Islands
+        ],
+      },
+      {
+        name: "United Kingdom",
+        code: "GB",
+        flagUrl: "https://flagcdn.com/gb.svg",
+        bounds: [
+          { lat: [49.9, 58.6], lon: [-8.0, 1.8] },  // Mainland United Kingdom
+        ],
+      },
     ];
+    
 
 
 
