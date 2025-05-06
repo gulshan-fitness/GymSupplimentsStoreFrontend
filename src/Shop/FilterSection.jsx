@@ -24,7 +24,8 @@ export default function FilterSection({resetHandler,setfilterPopUp}){
         }
       )
     }
-    if(setselectedCategory){
+
+    if(selectedCategory){
       dropDownSetter(7)
     }
 
