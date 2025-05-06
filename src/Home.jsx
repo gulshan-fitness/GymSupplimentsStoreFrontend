@@ -26,7 +26,7 @@ export default function Home(){
  
  
   return (
-    <div className="relative min-h-screen font-sans  overflow-hidden">
+    <div className="relative min-h-screen font-sans pb-[120px]  overflow-hidden">
       
       {/* Background Night Sky */}
 
@@ -184,14 +184,7 @@ export default function Home(){
 
    
 
-        {/* Footer */}
-
-
-
-
-        <footer className="   text-center p-4 text-gray-500">
-          © 2025 Gym Legion. All rights reserved.
-        </footer>
+      
         
       </div>
 

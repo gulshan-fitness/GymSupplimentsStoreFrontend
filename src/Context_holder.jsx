@@ -1075,11 +1075,10 @@ const [Products,setProducts]=useState([// {name:"(by Nutrabay) Instant Whey Prot
   
 
 const Categories = [
-  { name: "Shaker" },
-  
-
   { name: "Whey Protein" },
-
+  { name: "Creatine" },
+  { name: "Pre Workout" },
+  { name: "Shaker" },
   { name: "Casein Protein" },
   { name: "Vegan Plant Protein" },
   { name: "High Protein Food" },
@@ -1092,7 +1091,7 @@ const Categories = [
   { name: "BCAAs (Branched Chain Amino Acids)" },
   { name: "EAAs (Essential Amino Acids)" },
   { name: "Amino Blends" },
-  { name: "Creatine" },
+ 
   { name: "L Glutamine" },
   { name: "L Arginine" },
   { name: "Citrulline Malate" },
@@ -1102,7 +1101,7 @@ const Categories = [
   { name: "HMB" },
   { name: "Taurine" },
   { name: "L Tyrosine" },
-  { name: "Pre Workout" },
+ 
   { name: "Electrolytes & Energy Drinks" },
   { name: "Fat Burners" },
   { name: "Testosterone Boosters (Natural)" },

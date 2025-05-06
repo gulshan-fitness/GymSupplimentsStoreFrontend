@@ -39,7 +39,7 @@ export default function Shop() {
     const matchCategory = selectedCategory
       ? product.category === selectedCategory.value
       : true;
-
+  
     const safeRegex = (input) => {
       try {
         return new RegExp(input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"); // escape special chars
@@ -47,19 +47,25 @@ export default function Shop() {
         return null;
       }
     };
-
-    const brandRegex = selectedBrand ? safeRegex(selectedBrand) : null;
+  
+    const selectedBrandValue = selectedBrand ? selectedBrand.value : null;
     const productRegex = selectedProduct ? safeRegex(selectedProduct) : null;
-
-    const matchBrand = brandRegex ? brandRegex.test(product.brand) : true;
-    const matchProduct = productRegex ? productRegex.test(product.name) : true;
-
+  
+    const matchBrand = selectedBrandValue
+      ? product.brand === selectedBrandValue
+      : true;
+  
+    const matchProduct = productRegex
+      ? productRegex.test(product.name)
+      : true;
+  
     const matchCountry = UserCountry
       ? product[UserCountry] && product[UserCountry].trim() !== ""
       : true;
-
+  
     return matchCategory && matchBrand && matchProduct && matchCountry;
   });
+  
 
 
 

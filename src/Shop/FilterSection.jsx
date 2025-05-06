@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { FaChevronDown } from "react-icons/fa";
 
@@ -9,25 +9,36 @@ import { Context } from "../Context_holder";
 export default function FilterSection({resetHandler,setfilterPopUp}){
 
 
-    const {Categories,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct
+    const {Categories,selectedCategory,setselectedCategory,selectedBrand,setselectedBrand,selectedProduct,setselectedProduct,Brands
      
     }=useContext(Context);
   
     const [openDropdown, setOpenDropdown] = useState([]);
 
-   
+   useEffect(()=>{
+    const dropDownSetter=(id)=>{
+      setOpenDropdown(
+        predata=>{
+          const newarr=[...predata,id]
+          return newarr
+        }
+      )
+    }
+    if(setselectedCategory){
+      dropDownSetter(7)
+    }
+
+    if(selectedBrand){
+      dropDownSetter(9)
+    }
+
+    if(selectedProduct){
+      dropDownSetter(10)
+    }
 
   
 
-  
- 
-  
-
-  
-
-
-
-
+   },[setselectedCategory,selectedBrand,selectedProduct])
 
   
     const toggleDropdown = (index) => {
@@ -52,7 +63,7 @@ export default function FilterSection({resetHandler,setfilterPopUp}){
       
       {[ 
         { id: 7, label: "Categories", value: selectedCategory, setter: setselectedCategory, options: Categories },
-
+        { id: 9, label: "Brand Name",  value: selectedBrand && selectedBrand, setter: setselectedBrand ,options: Brands }
        
       ]?.map(({ id, label, value, setter, options }) => (
         <div key={id} className="mb-3">
@@ -110,7 +121,7 @@ export default function FilterSection({resetHandler,setfilterPopUp}){
 
       {[ 
         { id: 10, label: "Product Name",  value: selectedProduct && selectedProduct, setter: setselectedProduct },
-        { id: 9, label: "Brand Name",  value: selectedBrand && selectedBrand, setter: setselectedBrand }
+       
       ].map(({ id, label, ref, value, setter }) => (
         <div key={id} className="mb-3">
           <button onClick={() => toggleDropdown(id)} className="w-full flex justify-between items-center border border-white  p-3 rounded-lg shadow-sm transition-all">
