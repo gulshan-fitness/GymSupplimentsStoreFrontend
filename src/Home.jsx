@@ -166,7 +166,7 @@ export default function Home(){
    
    className=" px-3 rounded glow"
    onClick={()=>setCountrySelectPopUp(true)}
-   >Please Choose Country</button>
+   >Choose Country</button>
    
     </div>
  )
