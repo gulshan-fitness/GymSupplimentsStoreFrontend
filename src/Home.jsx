@@ -14,7 +14,7 @@ import Shop from "./Shop/Shop";
 
 export default function Home(){
 
-  const {Products,UserCountry,setselectedCategory}=useContext(Context)
+  const {Products,UserCountry,setselectedCategory,setCountrySelectPopUp}=useContext(Context)
   const [shopPage,setshopPage]=useState(false)
 
   useEffect(() => {
@@ -161,12 +161,12 @@ export default function Home(){
  </div>)
  :(
   <div className="fixed top-[100px] w-full left-0 text-center font-medium ">
-    <div className="glow3 px-2 mb-5">Products Are Coming Soon For Your Country</div>
-   <a 
-    href="https://www.facebook.com/gymlegionproduction/"
-    target="_blank"
-    rel="noopener noreferrer"
-   className=" px-3 rounded glow"> DM !</a>
+   
+   <button 
+   
+   className=" px-3 rounded glow"
+   onClick={()=>setCountrySelectPopUp(true)}
+   >Please Choose Country</button>
    
     </div>
  )
